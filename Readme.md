@@ -1,4 +1,4 @@
-#Objectives:
+# Objectives:
 Implement the following linear congruential pseudo-random number generator: xn+1 = (a·xn) mod M.
 Using the above random number generator, generate n integer key values starting from the seed value x0 = 98760053, and insert them into the hash table using the hash function:
 h(k) = k mod m, where k is the generated key value
@@ -11,7 +11,7 @@ Using the above random number generator, generate n key values starting from the
 h(k, i) = (h'(k) + i) mod m,\n
 h'(k) = f(k, m)
 
-#Then compute and display the following data: \
+# Then compute and display the following data: \
 
 load factor α = n/m
 average # of probes performed by insertion procedure
