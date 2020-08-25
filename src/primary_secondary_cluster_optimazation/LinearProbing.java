@@ -5,9 +5,9 @@ public class LinearProbing extends Cluster { // extend Cluster Class
 
 	public long HashFunction(long value, int i) { // h(k, i) = (h'(k) + i) mod m, where m is array size
 
-		long newhash = HashFunction(value);
+		long newHash = HashFunction(value);
 
-		return (newhash + i) % array_size;
+		return (newHash + i) % array_size;
 
 	}
 

@@ -1,18 +1,18 @@
 package primary_secondary_cluster_optimazation;
 
-public class RandomNumberGenereator {
+public class RandomNumberGenerator {
 
 	public long seed;
 
-	public RandomNumberGenereator() {
+	public RandomNumberGenerator() {
 		// default constructor
 	}
 
-	public RandomNumberGenereator(long seed) {
+	public RandomNumberGenerator(long seed) {
 		this.seed = seed;
 	}
 
-	public long pseduRandom() { // random number generator
+	public long pseudoRandom() { // random number generator
 		long a = 16807;
 		long mod = 2147483647;
 		long ans = (a * seed) % mod;

@@ -2,7 +2,7 @@ package primary_secondary_cluster_optimazation;
 
 public class Multiplication extends SeparateChaining { // extend SeparateChaining class
 
-	public long HashFucntion(long value) {	// Multiplication Method for Separate Chaining
+	public long HashFunction(long value) {	// Multiplication Method for Separate Chaining
 
 		double a = 0.6180339887498949;
 

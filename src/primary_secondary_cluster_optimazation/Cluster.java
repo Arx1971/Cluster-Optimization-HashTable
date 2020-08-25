@@ -10,7 +10,7 @@ public abstract class Cluster {
 	long seed_value = 98760053;
 	protected final long array_size = 1048576;
 	int probing = 0; // Counter for number of probing performed to insert the data
-	protected List<Integer> totalemptyClusterList; // Empty Cluster List
+	protected List<Integer> totalEmptyClusterList; // Empty Cluster List
 	protected List<Integer> totalClusterList; // Non-Empty Cluster List
 
 	public long getN() {
@@ -26,7 +26,7 @@ public abstract class Cluster {
 	private Hashtable<Long, Integer> ProbeSequence() { // This Method is inserting the key into HashTable and keep track
 														// of collision
 
-		RandomNumberGenereator myRandom = new RandomNumberGenereator();
+		RandomNumberGenerator myRandom = new RandomNumberGenerator();
 
 		Hashtable<Long, Integer> hashtable = new Hashtable<Long, Integer>();
 
@@ -34,9 +34,9 @@ public abstract class Cluster {
 
 		for (int i = 1; i <= n; i++) {
 
-			myRandom = new RandomNumberGenereator(value);
+			myRandom = new RandomNumberGenerator(value);
 
-			value = myRandom.pseduRandom();
+			value = myRandom.pseudoRandom();
 
 			int collision = 0;
 
@@ -62,11 +62,11 @@ public abstract class Cluster {
 
 	}
 
-	private int[] cluster() {	// Clustering the non-empty ProbeSequnce
+	private int[] cluster() {	// Clustering the non-empty ProbeSequences
 
 		Hashtable<Long, Integer> hashtable = ProbeSequence();
 
-		int arr[] = new int[(int) (array_size)];
+		int[] arr = new int[(int) (array_size)];
 
 		totalClusterList = new ArrayList<Integer>();
 
@@ -88,11 +88,11 @@ public abstract class Cluster {
 		return arr;
 	}
 
-	private int[] emptycluster() {	//// Clustering the empty ProbeSequnce
+	private int[] emptyCluster() {	//// Clustering the empty ProbeSequences
 
 		Hashtable<Long, Integer> hashtable = ProbeSequence();
 
-		totalemptyClusterList = new ArrayList<Integer>();
+		totalEmptyClusterList = new ArrayList<Integer>();
 
 		int arr[] = new int[(int) (array_size)];
 
@@ -102,7 +102,7 @@ public abstract class Cluster {
 			try {
 				if (hashtable.get((long) i) == 1) {
 					if (counter != 0)
-						totalemptyClusterList.add(counter);
+						totalEmptyClusterList.add(counter);
 					arr[counter]++;
 					counter = 0;
 				} else if (hashtable.get((long) i) == null) {
@@ -121,7 +121,7 @@ public abstract class Cluster {
 
 		System.out.println("array size = total # of buckets = " + array_size);
 		System.out.println("# of elements inserted = " + n);
-		System.out.println("load factor = " + loadfactor());
+		System.out.println("load factor = " + loadFactor());
 		System.out.println("average # of probes performed by insertion procedure = " + (1 + (probing / (double) n)));
 		System.out.println("The following is the distribution of the clusters.");
 		System.out.println("Display format is: cluster size, # of clusters, (# of clusters)/(total # of clusters)");
@@ -150,31 +150,31 @@ public abstract class Cluster {
 
 		System.out.println();
 
-		int emptycluster[] = emptycluster();
+		int[] emptyCluster = emptyCluster();
 
-		List<Integer> emptyclusterList = new ArrayList<Integer>();
+		List<Integer> emptyClusterList = new ArrayList<Integer>();
 
-		int numberofemptycluster = 0;
+		int numberOfEmptyCluster = 0;
 
 		for (int i = 1; i < array_size; i++) {
 
-			if (emptycluster[i] > 0) {
-				numberofemptycluster += emptycluster[i];
-				emptyclusterList.add(i);
+			if (emptyCluster[i] > 0) {
+				numberOfEmptyCluster += emptyCluster[i];
+				emptyClusterList.add(i);
 			}
 		}
 
 		for (int i = 1; i < array_size; i++) {
-			if (emptycluster[i] > 0) {
+			if (emptyCluster[i] > 0) {
 				System.out.println(
-						i + ", " + emptycluster[i] + ", " + (double) (emptycluster[i] / (double) numberofemptycluster));
+						i + ", " + emptyCluster[i] + ", " + (double) (emptyCluster[i] / (double) numberOfEmptyCluster));
 
 			}
 		}
 
-		System.out.println("total # of empty clusters = " + numberofemptycluster);
-		System.out.println("average empty cluster size = " + calculateAvg(totalemptyClusterList));
-		System.out.println("standard deviation of empty cluster sizes = " + calculateSD(totalemptyClusterList));
+		System.out.println("total # of empty clusters = " + numberOfEmptyCluster);
+		System.out.println("average empty cluster size = " + calculateAvg(totalEmptyClusterList));
+		System.out.println("standard deviation of empty cluster sizes = " + calculateSD(totalEmptyClusterList));
 	}
 
 	public double calculateSD(List<Integer> list) {	//The standard deviation is s = [(Σ1 ≤ i ≤ n(xi−μ)2)/(n−1)]1/2.
@@ -192,7 +192,7 @@ public abstract class Cluster {
 		return Math.sqrt(standardDeviation / length);
 	}
 
-	double loadfactor() {
+	double loadFactor() {
 		return n / (double) array_size;
 	}
 
@@ -202,9 +202,7 @@ public abstract class Cluster {
 		for (int i = 0; i < length; i++)
 			total += numbers.get(i);
 
-		double average = (1.0 * total) / length;
-
-		return average;
+		return (1.0 * total) / length;
 	}
 
 }

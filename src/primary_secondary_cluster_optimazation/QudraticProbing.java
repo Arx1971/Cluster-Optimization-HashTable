@@ -4,9 +4,9 @@ public class QudraticProbing extends Cluster { // extend Cluster class
 
 	public long HashFunction(long value, int i) { // h(k, i) = (h'(k) + i(i+1)/2) mod m, where m is the array size
 
-		long newhash = HashFunction(value);
+		long newHash = HashFunction(value);
 
-		return (newhash + (i * (i + 1)) / 2) % array_size;
+		return (newHash + (i * (i + 1)) / 2) % array_size;
 
 	}
 

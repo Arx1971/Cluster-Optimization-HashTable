@@ -12,7 +12,7 @@ public abstract class SeparateChaining {
 	protected final long array_size = 1000003; // bucket size, m
 	protected List<Integer> totalLoad; // to store all the data that inserting into bucket
 
-	public abstract long HashFucntion(long value); // Abstarct method for HashFunction
+	public abstract long HashFunction(long value); // Abstract method for HashFunction
 
 	public long getN() {
 		return n;
@@ -22,9 +22,9 @@ public abstract class SeparateChaining {
 		this.n = n;
 	}
 
-	public Hashtable<Long, Integer> Chainning() {
+	public Hashtable<Long, Integer> Chaining() {
 
-		RandomNumberGenereator myRandom = new RandomNumberGenereator();
+		RandomNumberGenerator myRandom = new RandomNumberGenerator();
 
 		Hashtable<Long, Integer> hashtable = new Hashtable<>();
 
@@ -36,27 +36,27 @@ public abstract class SeparateChaining {
 			totalLoad.add(0);
 
 		for (int i = 1; i <= n; i++) { // replace totalLoad value with value's that generated from
-										// RandomNumberGenereator
+										// RandomNumberGenerator
 
-			myRandom = new RandomNumberGenereator(value);
+			myRandom = new RandomNumberGenerator(value);
 
-			value = myRandom.pseduRandom();
+			value = myRandom.pseudoRandom();
 
-			totalLoad.set((int) HashFucntion(value), totalLoad.get((int) HashFucntion(value)) + 1);
+			totalLoad.set((int) HashFunction(value), totalLoad.get((int) HashFunction(value)) + 1);
 
 		}
 
-		for (int i = 1; i <= n; i++) { // Inserting keys into hashtable using RandomNumberGenereator class and keep
+		for (int i = 1; i <= n; i++) { // Inserting keys into hashtable using RandomNumberGenerator class and keep
 										// tracking of Collision
 
-			myRandom = new RandomNumberGenereator(value);
+			myRandom = new RandomNumberGenerator(value);
 
-			value = myRandom.pseduRandom();
+			value = myRandom.pseudoRandom();
 
-			if (hashtable.containsKey(HashFucntion(value))) {
-				hashtable.put(HashFucntion(value), hashtable.get(HashFucntion(value)) + 1);
+			if (hashtable.containsKey(HashFunction(value))) {
+				hashtable.put(HashFunction(value), hashtable.get(HashFunction(value)) + 1);
 			} else {
-				hashtable.put(HashFucntion(value), 1);
+				hashtable.put(HashFunction(value), 1);
 			}
 		}
 
@@ -66,7 +66,7 @@ public abstract class SeparateChaining {
 
 	public void display() {
 
-		Hashtable<Long, Integer> hashtable = Chainning(); // retrieving the data that inserted into hashtable in
+		Hashtable<Long, Integer> hashtable = Chaining(); // retrieving the data that inserted into hashtable in
 															// Chaining Method
 
 		System.out.println("array size = total # of buckets = " + array_size);
@@ -78,13 +78,13 @@ public abstract class SeparateChaining {
 
 		int arr[] = new int[(int) array_size + 1];
 
-		RandomNumberGenereator myRandom = new RandomNumberGenereator();
+		RandomNumberGenerator myRandom = new RandomNumberGenerator();
 
 		for (Entry<Long, Integer> itr : hashtable.entrySet()) {
 
-			myRandom = new RandomNumberGenereator(value);
+			myRandom = new RandomNumberGenerator(value);
 
-			value = myRandom.pseduRandom();
+			value = myRandom.pseudoRandom();
 
 			arr[itr.getValue()]++; // number of value added into same key
 
@@ -113,13 +113,13 @@ public abstract class SeparateChaining {
 
 		System.out.println();
 
-		System.out.println("load factor = " + loadfactor());
+		System.out.println("load factor = " + loadFactor());
 
 		System.out.println("standard deviation of bucket sizes from load factor = " + calculateSD(totalLoad));
 
 	}
 
-	double loadfactor() {
+	double loadFactor() {
 		return n / (double) array_size;
 	}
 
@@ -130,7 +130,7 @@ public abstract class SeparateChaining {
 		int length = list.size();
 
 		for (double num : list) {
-			standardDeviation += Math.pow(num - loadfactor(), 2);
+			standardDeviation += Math.pow(num - loadFactor(), 2);
 		}
 
 		return Math.sqrt(standardDeviation / (length - 1));
